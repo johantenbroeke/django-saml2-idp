@@ -121,6 +121,7 @@ def descriptor(request):
     Replies with the XML Metadata IDSSODescriptor.
     """
     idp_config = saml2idp_metadata.SAML2IDP_CONFIG
+    config = saml2idp_metadata.SAML2IDP_CONFIG
     entity_id = config['issuer']
     slo_url = request.build_absolute_uri(reverse('logout'))
     sso_url = request.build_absolute_uri(reverse('login_begin'))
@@ -132,5 +133,6 @@ def descriptor(request):
         'sso_url': sso_url,
 
     }
-    return xml_response(request, 'saml2idp/idpssodescriptor.xml', tv,
-                                context_instance=RequestContext(request))
+    return xml_response(request,
+                        'saml2idp/idpssodescriptor.xml', tv)
+                        # context_instance=RequestContext(request))

@@ -111,16 +111,16 @@ SAML2IDP_CONFIG = {
 }
 
 demoSpConfig = {
-    'acs_url': 'http://127.0.0.1:9000/sp/acs/',
+    'acs_url': 'http://127.0.0.1:9000/saml2/acs/',
     'processor': 'saml2idp.demo.Processor',
     'links': [ # a list of (resource, pattern) tuples, or a {resource: pattern} dict
         #NOTE: This should still work, due to the "simple" 'login_init' URL in urls.py:
         #TEST BY BROWSING TO: http://127.0.0.1:8000/sp/test/
-        ('deeplink', 'http://127.0.0.1:9000/sp/%s/'),
+        ('deeplink', 'http://127.0.0.1:9000/saml2/%s/'),
         # The following are "new" deeplink mappings that let you specify more than one capture group:
         # This is equivalent to the above, using the 'new' deeplink mapping:
         #TEST BY BROWSING TO: http://127.0.0.1:8000/sp/test/
-        (r'deeplink/(?P<target>\w+)', 'http://127.0.0.1:9000/sp/%(target)s/'),
+        (r'deeplink/(?P<target>\w+)', 'http://127.0.0.1:9000/saml2/%(target)s/'),
         # Using two capture groups:
         #TEST BY BROWSING TO: http://127.0.0.1:8000/sp/test/
         (r'deeplink/(?P<target>\w+)/(?P<page>\w+)', 'http://127.0.0.1:9000/%(target)s/%(page)s/'),
@@ -133,10 +133,10 @@ demoSpConfig = {
     ],
 }
 attrSpConfig = {
-    'acs_url': 'http://127.0.0.1:9000/sp/acs/',
+    'acs_url': 'http://127.0.0.1:9000/saml2/acs/',
     'processor': 'saml2idp.demo.AttributeProcessor',
     'links': {
-        'attr': 'http://127.0.0.1:9000/sp/%s/',
+        'attr': 'http://127.0.0.1:9000/saml2/%s/',
     },
 }
 SAML2IDP_REMOTES = {

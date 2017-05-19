@@ -11,6 +11,7 @@ import codex
 import exceptions
 import saml2idp_metadata
 import xml_render
+import zlib
 
 MINUTES = 60
 HOURS = 60 * MINUTES
@@ -81,7 +82,11 @@ class Processor(object):
         """
         Decodes _request_xml from _saml_request.
         """
-        self._request_xml = base64.b64decode(self._saml_request)
+
+        print "base64: ",self._saml_request
+        # self._request_xml = base64.b64decode(self._saml_request)
+        self._request_xml = zlib.decompress(base64.b64decode(self._saml_request), -15).decode('utf-8')
+        print "XML: ",self._request_xml
 
     def _determine_assertion_id(self):
         """
